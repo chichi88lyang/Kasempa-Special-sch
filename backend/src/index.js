@@ -17,14 +17,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const reactBuildPath = path.join(__dirname, "../public");
-
-// ✅ Serve static files from React build
 app.use(express.static(reactBuildPath));
 
-// ✅ API routes
 app.use("/api/auth", authRoutes);
 
-// ✅ Catch-all route (works on Express v5)
+// Catch-all route for React Router
 app.get(/.*/, (req, res) => {
   res.sendFile(path.join(reactBuildPath, "index.html"));
 });
